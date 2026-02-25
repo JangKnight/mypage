@@ -16,13 +16,10 @@ months = {
     "December": "December"
 }
 
-def main(request):
-    months_as_list_items = ""
+def index(request):
     month_list = list(months.keys())
-    for month in month_list:
-        months_as_list_items += f"<li><a href='{month}'>{month}</a></li>"
-    res = f"<ul>{months_as_list_items}</ul>"
-    return HttpResponse(res)
+    res = {"months": month_list}
+    return render(request, "index.html", res)
 
 
 def journals_by_month(request, month):

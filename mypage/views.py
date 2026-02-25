@@ -8,6 +8,8 @@ def main(request):
 def me(request, page):
     if page == None or page == "":
         page = "home"
+    else:
+        page = page.lower()
     if page == "home":
         title = "Home"
         content = "Welcome to my homepage!"
@@ -17,6 +19,9 @@ def me(request, page):
     elif page == "contact":
         title = "Contact"
         content = "You can contact me at anthonysjhenry@icloud.com."
+    elif page == "journal":
+        redirect_url = "/journal/"
+        return HttpResponse(f"<script>window.location.href='{redirect_url}';</script>")
     else:
         title = "Page Not Found"
         content = "Sorry, the page you are looking for does not exist."
