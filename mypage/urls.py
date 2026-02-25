@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('<str:page>/', views.me),
+    path("", views.main),
+    path("<str:page>", views.me),
     path("journal/", include("journal.urls"))
 ]
