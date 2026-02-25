@@ -19,7 +19,7 @@ months = {
 def index(request):
     month_list = list(months.keys())
     res = {"months": month_list}
-    return render(request, "index.html", res)
+    return render(request, "journal.html", res)
 
 
 def journals_by_month(request, month):

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
+from django.template.loader import render_to_string
 def main(request):
     page = ""
     return me(request, page)
@@ -11,20 +11,15 @@ def me(request, page):
     else:
         page = page.lower()
     if page == "home":
-        title = "Home"
-        content = "Welcome to my homepage!"
+        return render(request, "home.html")
     elif page == "about":
-        title = "About"
-        content = "This is the about page."
+        return render(request, "about.html")
     elif page == "contact":
-        title = "Contact"
-        content = "You can contact me at anthonysjhenry@icloud.com."
+        return render(request, "contact.html")
     elif page == "journal":
         redirect_url = "/journal/"
-        return HttpResponse(f"<script>window.location.href='{redirect_url}';</script>")
+        return HttpResponseRedirect(redirect_url)
     else:
-        title = "Page Not Found"
-        content = "Sorry, the page you are looking for does not exist."
-    res = {"title": title, "content": content}
-    return render(request, "main.html", res)
+        res = render_to_string("404.html")
+        return HttpResponseNotFound(res)
 

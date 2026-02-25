@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Journal Index</title>
+    <title>{% block title %}My Journal{% endblock %}</title>
 </head>
     <body>
         <h1>My Journal Index</h1>
         <ul>
         {% for month in months %}
-            <li><a href="/journal/{{ month }}">{{ month }}</a></li>
+            <li><a href="{% url 'journals_by_month' month %}">{{ month }}</a></li>
         {% endfor %}
         </ul>
     </body>
