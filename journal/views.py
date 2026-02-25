@@ -16,7 +16,17 @@ months = {
     "December": "December"
 }
 
+def main(request):
+    months_as_list_items = ""
+    month_list = list(months.keys())
+    for month in month_list:
+        months_as_list_items += f"<li><a href='{month}'>{month}</a></li>"
+    res = f"<ul>{months_as_list_items}</ul>"
+    return HttpResponse(res)
+
+
 def journals_by_month(request, month):
+    print("by month", month)
     res = ""
     month = month.lower()
     month = month.capitalize()
@@ -27,6 +37,7 @@ def journals_by_month(request, month):
     return HttpResponse(res)
 
 def journals_by_number(request, month):
+    print("by number", month)
     res = ""
     if month < 1 or month > 12:
         return HttpResponseNotFound("<h1>404 Not Found</h1>")
